@@ -6,20 +6,25 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @desc:
- * 
+ * 示例接口
  * @author: Richy
- * @date: 2020/12/27/0027 17:31
+ * @date: 2020-12-27 18:27
  */
 @RequestMapping("example")
 @RestController
 public class ExampleController {
 
     /**
-     * 获取详情
-     * @return
+     * @desc:
+     * 查询用户详细信息
+     * @method: queryUserInfo
+     * @param:	name: 姓名
+     * @param:	age: 年龄
+     * @date:   2020-12-27 18:32
+     * @return: java.lang.String
      */
     @PostMapping("info")
-    public String getInfo(){
+    public String queryUserInfo(String name,Integer age){
         return "getInfo";
     }
 }
