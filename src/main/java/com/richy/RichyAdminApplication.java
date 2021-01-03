@@ -12,12 +12,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 2020/12/27/0027 17:55
  */
 @SpringBootApplication
-public class Application {
+public class RichyAdminApplication {
 
-    private final static Logger logger = LoggerFactory.getLogger(Application.class);
+    private final static Logger logger = LoggerFactory.getLogger(RichyAdminApplication.class);
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
-        logger.info(Application.class.getSimpleName() + " is success!");
+        SpringApplication.run(RichyAdminApplication.class, args);
+        logger.info(RichyAdminApplication.class.getSimpleName() + " is success!");
     }
 }

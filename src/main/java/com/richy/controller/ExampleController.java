@@ -1,6 +1,6 @@
 package com.richy.controller;
 
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,7 +23,7 @@ public class ExampleController {
      * @date:   2020-12-27 18:32
      * @return: java.lang.String
      */
-    @PostMapping("info")
+    @GetMapping("info")
     public String queryUserInfo(String name,Integer age){
         return "getInfo";
     }
