@@ -1,8 +1,13 @@
 package com.richy.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.richy.constants.JWTConstant;
+import com.richy.dto.UserDTO;
+import com.richy.util.JWTUtil;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 
 /**
  * @desc:
@@ -26,5 +31,36 @@ public class ExampleController {
     @GetMapping("info")
     public String queryUserInfo(String name,Integer age){
         return "getInfo";
+    }
+
+    /**
+     * @desc:
+     * 获取token
+     * @method: getToken
+     * @param:	userDTO:
+     * @date:   2021-01-10 18:32
+     * @return: java.lang.String
+     */
+    @PostMapping("getToken")
+    public String getToken(@RequestBody UserDTO userDTO,HttpServletResponse response){
+       String token = JWTUtil.createToken(userDTO.getUsername());
+       response.addCookie(JWTUtil.buildCookie(token));
+       return token;
+    }
+
+    /**
+     * @desc:
+     * 模拟请求
+     * @method: doRequest
+     * @param:	request:
+     * @param:	response:
+     * @date:   2021-01-10 18:37
+     * @return: java.lang.String
+     */
+    @PostMapping("doRequest")
+    public String doRequest(HttpServletRequest request, HttpServletResponse response){
+        String token = JWTUtil.getCookie(request, JWTConstant.TOKEN_COOKIE_KEY);
+        String username = JWTUtil.verifyToken(token);
+        return username;
     }
 }

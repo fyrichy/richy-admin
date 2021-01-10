@@ -1,3 +1,11 @@
 #配置端口号
 server:
   port: 8080
+
+
+#jwt配置信息
+jwt:
+  cookiemaxage: 1800
+  secret: A0E0ECCA873F4DE5BE86D8730F27D889
+  cookiePath: /
+  domain: localhost
