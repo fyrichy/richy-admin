@@ -55,9 +55,9 @@ public class JWTUtil {
             Integer millisSecond = cookieMaxAge * 1000;
             JWTCreator.Builder builder = JWT
                     .create()
-                    .withIssuer(username)
-                    .withExpiresAt(new Date(System.currentTimeMillis() + millisSecond));
-            String token = builder.sign(Algorithm.HMAC256(secret));
+                    .withIssuer(username)//用户工号
+                    .withExpiresAt(new Date(System.currentTimeMillis() + millisSecond));//过期时间
+            String token = builder.sign(Algorithm.HMAC256(secret));//秘钥
             return token;
         }catch (Exception e){
             logger.error("JWTUtil-createToken error:",e);
@@ -76,8 +76,8 @@ public class JWTUtil {
     public static String verifyToken(String token){
         try{
             JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(secret)).build();
-            DecodedJWT jwt = jwtVerifier.verify(token);
-            String username = jwt.getIssuer();
+            DecodedJWT jwt = jwtVerifier.verify(token);//校验token
+            String username = jwt.getIssuer();//获取token中的用户信息
             return username;
         }catch (Exception e){
             logger.error("JWTUtil-verifyToken error:",e);
